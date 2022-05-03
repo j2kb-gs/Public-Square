@@ -1,0 +1,154 @@
+[
+{
+    "model": "home.provider",
+    "pk": 1,
+    "fields": {
+        "name": "LinkNYC - Citybridge",
+        "ssid": "LinkNYC Free Wi-Fi",
+        "source_id": "LINK-000653",
+        "type": "Free",
+        "loc_type": "Outdoor Kiosk",
+        "remarks": "Tablet Internet -phone , Free 1 GB Wi-FI Service"
+    }
+}, 
+{
+    "model": "home.provider",
+    "pk": 2,
+    "fields": {
+        "name": "ALTICEUSA",
+        "ssid": "GuestWiFi",
+        "source_id": "",
+        "type": "Limited Free",
+        "loc_type": "Outdoor",
+        "remarks": "3 free 10 min sessions"
+    }
+}, 
+
+{
+    "model": "home.provider",
+    "pk": 3, 
+    "fields": {
+        "name": "SPECTRUM",
+        "ssid": "GuestWiFi", 
+        "source_id": "0", 
+        "type": "Limited Free", 
+        "loc_type": "Indoor", 
+        "remarks": "3 free 10 min sessions"
+    }
+}, 
+
+
+{
+    "model": "home.provider",
+    "pk": 4, 
+    "fields": {
+        "name":"AT&T",
+        "ssid":"attwifi", 
+        "source_id":" ", 
+        "type":"Free", 
+        "loc_type":"Outdoor", 
+        "remarks":" "
+    }
+}, 
+
+
+
+
+{
+    "model": "home.provider",
+    "pk": 5, 
+    "fields": { 
+        "name":"Fiberless", 
+        "ssid":"Governors Island", 
+        "source_id":"Governors Island Trust", 
+        "type":"Free", 
+        "loc_type":"Outdoor", 
+        "remarks":"Free - up to 5 mbs" 
+    }
+}, 
+
+
+{
+    "model": "home.provider",
+    "pk": 6, 
+    "fields": { 
+        "name":"Downtown Brooklyn", 
+        "ssid":"Downtown Brooklyn WiFi", 
+        "source_id":"", 
+        "type":"Free", 
+        "loc_type":"Outdoor", 
+        "remarks":"" 
+    }
+}, 
+
+
+{
+    "model": "home.provider",
+    "pk": 7, 
+    "fields": { 
+        "name":"NYPL", 
+        "ssid":"NYPL", 
+        "source_id":"", 
+        "type":"Free", 
+        "loc_type":"Library", 
+        "remarks":"" 
+    }
+}, 
+
+
+{
+    "model": "home.provider",
+    "pk": 8, 
+    "fields": { 
+        "name":"Manhattan Down Alliance", 
+        "ssid":"DwtwnAllianceFreeWiFi", 
+        "source_id":"", 
+        "type":"Free", 
+        "loc_type":"Outdoor", 
+        "remarks":"" 
+    }
+}, 
+
+
+{
+    "model": "home.provider",
+    "pk": 9, 
+    "fields": {  
+        "name": "Harlem", 
+        "ssid": "Harlem Wi-Fi", 
+        "source_id": "", 
+        "type": "Free", 
+        "loc_type": "Outdoor", 
+        "remarks": "" 
+    }
+}, 
+ 
+
+{
+    "model": "home.provider",
+    "pk": 10, 
+    "fields": {  
+    "name": "Transit Wireless", 
+    "ssid": "TransitWirelessWiFi", 
+    "source_id": "", 
+    "type": "Free", 
+    "loc_type": "Subway Station", 
+    "remarks": "SN 223" 
+    }
+}, 
+ 
+
+{
+    "model": "home.provider",
+    "pk": 11, 
+    "fields": {  
+        "name": "Chelsea", 
+        "ssid": "CICFreeWiFi", 
+        "source_id": "", 
+        "type": "Free", 
+        "loc_type": "Outdoor", 
+        "remarks": ""
+    }
+}
+ 
+]

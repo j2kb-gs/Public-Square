@@ -17,7 +17,8 @@ from unipath import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = Path(__file__).parent
-NYC_PUBLIC_WIFI_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+NYC_PUBLIC_WIFI_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) 
+FIXTURES_DIRS = (os.path.join(NYC_PUBLIC_WIFI_DIR, 'fixtures'), ) # Add FIXTURES_DIRS path
 
 
 # Quick-start development settings - unsuitable for production

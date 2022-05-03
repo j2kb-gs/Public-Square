@@ -26,6 +26,10 @@ def login_view(request):
     return render(request, "accounts/login.html", {"form": form, "msg": msg})
 
 
+def logoutView(request):
+    return render (request, "accounts/logout.html")
+
+
 def register_user(request):
     msg = None
     success = False
@@ -50,3 +54,5 @@ def register_user(request):
         form = SignUpForm()
 
     return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
+
+

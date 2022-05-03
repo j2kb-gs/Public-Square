@@ -1,0 +1,38 @@
+[
+{
+    "model": "home.borough",
+    "pk": 1,
+    "fields": {
+        "name": "Manhattan"
+    }
+},
+{
+    "model": "home.borough",
+    "pk": 2,
+    "fields": {
+        "name": "Bronx"
+    }
+},
+{
+    "model": "home.borough",
+    "pk": 3,
+    "fields": {
+        "name": "Brooklyn"
+    }
+},
+{
+    "model": "home.borough",
+    "pk": 4,
+    "fields": {
+        "name": "Queens"
+    }
+},
+{
+    "model": "home.borough",
+    "pk": 5,
+    "fields": {
+        "name": "Staten Island"
+    }
+}
+
+]
