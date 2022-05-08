@@ -14,11 +14,10 @@ from django.template import loader
 from django.urls import reverse
 from django.db.models import Q
 from .forms import ReviewForm
-from .models import Hotspot_Location, Hotspot_Neighborhood, Review
+from .models import Hotspot_Location, Hotspot_Neighborhood, Review,Neighborhood, Provider
 from django.contrib.auth.models import User
 
 from .forms import BoroughForm, NeighborhoodForm, ProviderForm
-from .models import Hotspot_Location, Neighborhood, Provider
 from django.contrib import messages
 
 from django.core.paginator import Paginator
@@ -281,7 +280,7 @@ def add_provider(request):
 #### LIST OBJECTS ####
 
 def neighborhood_list(request):
-    neighborhood_list = Neighborhood.objects.all().order_by('ntcaode')
+    neighborhood_list = Neighborhood.objects.all().order_by('ntacode')
     return render(request, 'home/neighborhood-list.html',
                {'neighborhood_list':neighborhood_list})
     
@@ -298,7 +297,7 @@ def provider_list(request):
 ##### UPDATE OBJECTS #####
 
 def update_neighborhood(request, ntacode):
-	event = Neighborhood.objects.get(ntcaode=ntacode)
+	event = Neighborhood.objects.get(ntacode=ntacode)
 	if request.user.is_superuser:
 		form = NeighborhoodForm(request.POST or None, instance=event)	
 	else:

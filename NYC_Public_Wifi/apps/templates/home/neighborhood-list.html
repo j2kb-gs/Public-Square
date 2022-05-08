@@ -37,11 +37,11 @@
                                           <tbody>
                                           {% for i in neighborhood_list %}
                                             <tr>
-                                              <td>{{i.ntcaode}}</td>
+                                              <td>{{i.ntacode}}</td>
                                               <td>{{i.postcode}}</td>
                                               <td>{{i.nta}}</td>
-                                              <td><a href="{% url 'update-neighborhood' i.ntcaode %}" class="btn btn-outline-secondary btn-sm bg-gradient-white">Update</a></td>
-                                              <td><a href="{% url 'delete-neighborhood' i.ntcaode %}" class="btn btn-outline-secondary btn-sm bg-gradient-white">Delete</a></td>
+                                              <td><a href="{% url 'update-neighborhood' i.ntacode %}" class="btn btn-outline-secondary btn-sm bg-gradient-white">Update</a></td>
+                                              <td><a href="{% url 'delete-neighborhood' i.ntacode %}" class="btn btn-outline-secondary btn-sm bg-gradient-white">Delete</a></td>
 
                                           {% endfor %}
                                     {% endif %}
