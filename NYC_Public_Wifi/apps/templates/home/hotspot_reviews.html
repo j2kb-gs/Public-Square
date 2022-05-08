@@ -1,0 +1,131 @@
+{% extends "layouts/base.html" %}
+{% block title %} Hotspot Profile {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <main> 
+        {% include 'includes/preloader.html' %}
+
+        <!-- Hero -->
+        <section class="section section-header pb-11 bg-primary text-white">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-xl-8 text-center">
+                        <a href="{% url 'hotspot_profile' hotspot.obj_id.obj_id %}">
+                            <h1 class="display-2 mb-3">Reviews - ID : {{hotspot.obj_id.obj_id}}</h1> </a>
+                        <p class="lead">check out what other people think about this hotspot </p>        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Section -->
+        <div class="section py-0">
+            <div class="container mt-n10">
+                <div class="card-group">
+                    <div class="card text-dark bg-light mb-3">
+                        <div class="card-header">
+                            <h5 class="card-title">
+                                Hotspot Infos
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"><b>Address:</b> {{hotspot.obj_id.location}}</p>
+                            {% if hotspot.obj_id.loc_name %}
+                            <p class="card-text"><b>Location:</b> {{hotspot.obj_id.loc_name}}</p>
+                            {% else %}
+                            {% endif %}
+                            <p class="card-text"><b>Neighborhood:</b> {{hotspot.ntacode.nta}}</p>
+                            <p class="card-text"><b>Postcode:</b> {{hotspot.ntacode.postcode}}</p>
+                            <p class="card-text"><b>Date Activated:</b> {{hotspot.obj_id.activated}}</p>
+                            <br><hr><br>
+                            
+                            <p class="card-text"><b>Review Count:</b> {{hotspot.obj_id.review_set.count}}  </p> 
+                            <p class="card-text">
+                                <b>Average Rating:</b> {{hotspot.obj_id.average_rating | floatformat}} <span class="fas fa-star"></span> 
+                            </p>
+                           
+                           
+                        </div>
+                    </div>
+                    <!-- Review Form -->
+                    <div class="card text-dark bg-light mb-3">
+                        <div class="card-header">
+                            <h5 class="card-title">
+                                Review Hotspot 
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <form action="{% url 'add_review' hotspot.obj_id.obj_id %}" method="post" class="form">
+                                {% csrf_token %}
+
+                                <div class="form-group mb-4">
+                                    <label for="email">Rate</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon1"><span class="fas fa-star"></span></span>
+                                        {{ form.rate }}
+                                    </div>  
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="email">Review</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon1"><span class="fas fa-pen"></span></span>
+                                        {{ form.review }}
+                                    </div>  
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" name="login" class="btn btn-primary">Post</button>
+                                </div>
+                            </form>
+                           
+                           
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+        <section class="section section-lg pt-6">
+            <div class="container  bg-light mb-3">
+                {% if rev %}
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+
+                    {% for rev in rev %}
+                    <div class="col">
+                        <div class="card text-white bg-secondary bg-gradient mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title" style="font-style: italic;">{{rev.rate}} <span class="fas fa-star"></span> 
+                                    by @{{rev.owner}} </h5>
+                                <p class="card-text">{{rev.review}}</p>
+                                <p class="card-text"><small class="text-muted">Posted on {{rev.date_added}}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="card text-white bg-secondary bg-gradient mb-3">
+                    <div class="card-body">
+                        <p class="card-text">No reviews for this hotspot yet. Hey! be the first to leave a review . What say you..</p>
+                    </div>
+                </div>
+
+                {% endif %}
+            </div>
+        </section>
+        
+
+
+    </main>
+   
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+
+

@@ -1,0 +1,157 @@
+{% extends "layouts/base.html" %}
+{% block title %} Search {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <main>
+        {% include 'includes/preloader.html' %}
+        <section class="section-header bg-secondary text-white">
+            <div class="container">
+                <div class="row align-items-center justify-content-around">
+                    <div class="col-md-3 col-xl-5 mb-3">
+                        <img class="img-fluid" src="/static/assets/img/sections/ix2.jpg" alt="Office Desk">
+                    </div>
+                    <div class="col-md-6 col-xl-5 text-center text-md-left">
+                        <h2 class="h1 mb-5">Search Segment .</h2>
+                        <p class="lead">You can search for hotspots here. Your search keywords can be anything raging form 
+                            postcode, neighborhood ,specific address, borough etc..</p>
+                        <p class="lead">Once you get the list of hotspots, you can click on an ID to get more details about that 
+                            specific hotspot.
+                        </p>
+
+                        {% if submitbutton == 'Search' and request.GET.q != '' %}
+                        {% if results %}
+                        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </symbol>
+                        </svg>
+                            <br><br><br>
+                        <div class="alert alert-success d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                            <div  class=" text-center">
+                               Results for search keyword " <i>{{ request.GET.q }}</i> "
+                            </div>
+                        </div>
+                            
+                        
+                    </div>
+                </div>
+               
+
+            </div>
+        </section>
+       
+       <!-- Section -->
+        <section class="section section-md">
+            <div class="container">
+            
+                    {% for result in results %}
+                    <div class="card text-white bg-primary mb-3" >
+                        <div class="card-header">
+                            <h5 class="card-title">
+                                <a href="{% url 'hotspot_profile' result.obj_id.obj_id %}">Hotspot ID : {{result.obj_id.obj_id}}</a> 
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    Location: {{result.obj_id.location}}
+                                </div>
+                                <div class="col">
+                                    Neighborhood: {{result.ntacode.nta}}
+                                </div>
+                                <div class="col">
+                                    Postcode: {{result.ntacode.postcode}}
+                                </div>
+                                <div class="col">
+                                    Rating: 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                          </symbol>
+                    </svg>
+                    <br><br><br>
+                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div>
+                           Sorry! no results for your search " <i>{{ request.GET.q }}</i> "
+                        </div>
+                   </div>
+               
+                   
+                {% endif %}
+                {% else %}
+               
+                {% endif %}
+                
+
+            </div>
+        </section>
+       
+    </main>
+   
+
+    <!-- End of section -->
+    <section class="section section-lg bg-gray-200">
+        <div class="container">
+            <!-- <div class="card text-white bg-primary mb-3" > -->
+            <div class="card text-dark bg-light mb-3">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        <a href=" "></a> 
+                    </h5>
+                </div>
+                <div class="card-body">
+               
+                </div>
+            </div>
+        </div>
+        
+    </section>
+    {% include 'includes/footer-new.html' %}
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+
+
+
+
+
+
+
+ <!-- <form class="row g-3" action="{% url 'search' %}" method="GET" value="{{request.GET.q}}">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <input type="text" class="form-control"  name="q" value="{{request.GET.q}}" placeholder="Search...">  
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <button type="submit" name="submit" value="Search" class="btn btn-primary mb-3">Confirm Search</button>
+                        </div>
+                    </div>
+                </form> -->
+
+<!-- <div class="card text-white bg-primary mb-3" >
+                        <div class="card-header">
+                            <h5 class="card-title">
+                            Search Segment
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p>You can search for hotspots here. Your search keywords can be anything raging form 
+                            postcode, neighborhood ,specific address, borough etc.. </p>
+                            <p>Once you get the list of hotspots, you can click on an ID to get more details about that 
+                                specific hotspot
+                            </p>
+                        </div>
+                    </div> -->

@@ -1,0 +1,148 @@
+{% extends "layouts/base.html" %}
+{% block title %} Hotspot Profile {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <main>
+         
+        {% include 'includes/preloader.html' %}
+
+        <!-- Hero -->
+        <section class="section section-header pb-11 bg-primary text-white">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-xl-8 text-center">
+                        <a class="megamenu-link" href="">
+                        <h1 class="display-2 mb-3">Hotspot Profile : {{hotspot.obj_id.obj_id}}</h1></a>
+                        <p class="lead">all details about a specific Hotspot </p>        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section -->
+        <div class="section py-0">
+            <div class="container mt-n10">
+                <div class="row">
+                    <div class="col-12">
+                        <iframe class="map rounded" id="gmap_canvas" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=NYC,%20NY+()&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section -->
+        <section class="section section-lg pt-6">
+            <div class="container  bg-primary mb-3">
+               
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <br>
+                    <div class="col">
+                      <div class="card text-white bg-success mb-3">
+                        <!-- <img src="..." class="card-img-top" alt="..."> -->
+                       
+                        <div class="card-body">
+                            <h4 class="card-title ">Coordinates</h4>
+                            <p class="card-text"><b>Address:</b> {{hotspot.obj_id.location}}</p>
+                            {% if hotspot.obj_id.loc_name %}
+                            <p class="card-text"><b>Location:</b> {{hotspot.obj_id.loc_name}}</p>
+                            {% else %}
+                            {% endif %}
+                            <p class="card-text"><b>Neighborhood:</b> {{hotspot.ntacode.nta}}</p>
+                            <div class="row">
+                                <div class="col"><p class="card-text">
+                                    <b>Postcode:</b> {{hotspot.ntacode.postcode}}</p>
+                                </div>
+                                <div class="col"><p class="card-text">
+                                    <b>Borough:</b> {{hotspot.obj_id.hotspot_borough.boro_code.name}}</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col"><b>X:</b> {{hotspot.obj_id.X}}</div>
+                                <div class="col"><b>Y:</b> {{hotspot.obj_id.Y}}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col"><b>Latitute:</b> {{hotspot.obj_id.latitude}}</div>
+                                <div class="col"><b>Longitude:</b> {{hotspot.obj_id.longitude}}</div>
+                            </div>
+                           
+                           
+                        </div>
+                      </div>
+                    </div>
+                   
+                    <div class="col">
+                      <div class="card text-white bg-success mb-3">
+                        <!-- <img src="..." class="card-img-top" alt="..."> -->
+                        <div class="card-body">
+                            <h4 class="card-title">Description</h4>
+                            <div class="row">
+                                <div class="col"><b>SSID:</b> {{hotspot.obj_id.hotspot_provider.prov_id.ssid}}</div>
+                                <div class="col"><b>Source ID:</b> {{hotspot.obj_id.hotspot_provider.prov_id.source_id}}</div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col"><b>Location Type:</b> {{hotspot.obj_id.hotspot_provider.prov_id.loc_type}}</div>
+                                <div class="col"><b>Wifi Type:</b> {{hotspot.obj_id.hotspot_provider.prov_id.type}}</div>
+                            </div>
+                            <br>
+                            <p class="card-text"><b>Remarks:</b> {{hotspot.obj_id.hotspot_provider.prov_id.remarks}}</p>
+
+                         
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                        <div class="card text-white bg-success mb-3">
+                          <!-- <img src="..." class="card-img-top" alt="..."> -->
+                          <div class="card-body">
+                            <h4 class="card-title">Provider Info</h4>
+                            
+                            <p class="card-text"><b>ID:</b> {{hotspot.obj_id.hotspot_provider.prov_id.prov_id}}</p>
+                            <p class="card-text"><b>Name:</b> {{hotspot.obj_id.hotspot_provider.prov_id.name}}</p>
+                            
+                            <hr>
+                            <h4 class="card-title">Extra Infos</h4>
+                            <p class="card-text"><b>Date Activated:</b> {{hotspot.obj_id.activated}}</p>
+                            <div class="row">
+                                <div class="col"><b>BIN :</b> {{hotspot.obj_id.bin}}</div>
+                                <div class="col"><b>BBL :</b> {{hotspot.obj_id.bbl}}</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="col">
+                      <div class="card text-white bg-success mb-3">
+                        <!-- <img src="..." class="card-img-top" alt="..."> -->
+                        <div class="card-body">
+                          <h4 class="card-title">
+                            <a href="{% url 'hotspot_reviews' hotspot.obj_id.obj_id %}"> Reviews </a>
+                            </h4>
+                          <p class="card-text"><b>Review Count:</b> {{hotspot.obj_id.review_set.count}} </p>
+                          <p class="card-text"><b>Average Rating:</b> {{hotspot.obj_id.average_rating | floatformat}} 
+                            <span class="fas fa-star"></span>  </p>
+                          <p class="card-text"> Click on "Reviews" to check out the reviews of this hotspot</p>
+                        </div>
+                      </div>
+                    </div>
+                   
+                      
+                </div>
+                <br>
+            </div>
+        </section>
+   
+    </main>
+   
+
+  
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+
+

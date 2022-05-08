@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+import numpy as np
 
 # Create your models here.
 
@@ -17,6 +19,11 @@ class Hotspot_Location(models.Model):
 
     def __str__(self):
         return str(self.obj_id) + " - " + self.location
+
+    def average_rating(self):
+        all_ratings = map(lambda x: x.rate, self.review_set.all())
+        ar = np.mean(list(all_ratings)) # np -> numpy
+        return ar
 
 
 #---------------------------#
@@ -69,16 +76,50 @@ class Hotspot_Borough(models.Model):
 
 
 class Neighborhood(models.Model):
-    ntcaode =  models.CharField(max_length=5, primary_key= True, unique = True, null= False)
+    ntacode =  models.CharField(max_length=5, primary_key= True, unique = True, null= False)
     postcode = models.SmallIntegerField( null= False)
     nta = models.CharField(max_length= 100, null= False)
 
     def __str__(self):
-        return self.ntcaode + " - " + self.nta
+        return self.ntacode + " - " + self.nta
 
 class Hotspot_Neighborhood(models.Model):
     obj_id = models.OneToOneField(Hotspot_Location, on_delete=models.CASCADE, null = False)
     ntacode = models.ForeignKey(Neighborhood, on_delete=models.CASCADE, null = False)
     
-  
+    def __str__(self):
+        return str(self.obj_id) + " - " + str(self.ntacode)
 
+
+
+
+
+#---------------------------#
+#----- Reviews Related -----#
+#---------------------------#
+class Review(models.Model):
+    RATING_CHOICES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    )
+    obj_id = models.ForeignKey(Hotspot_Location, on_delete=models.CASCADE, null = False)
+    rate = models.IntegerField (choices = RATING_CHOICES, null=True)
+    review = models.TextField(null = True)
+    date_added = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    deleted = models.BooleanField(default=False)
+
+
+class Modified_Review(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    old_review = models.ForeignKey(Review, on_delete=models.CASCADE)
+    new_review = models.TextField(null = True)
+
+
+# class Deleted_Review(models.Model):
+#     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+#     review = models.ForeignKey(Review, on_delete=models.CASCADE)
