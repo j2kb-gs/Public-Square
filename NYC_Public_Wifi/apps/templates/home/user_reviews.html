@@ -42,12 +42,91 @@
                             <div class="col"><p class="card-text"><b>Email:</b> {{user.email}}</p></div>
                             <div class="col"><p class="card-text"><b>Last Login:</b> {{user.last_login}}</p></div>
                         </div>
-                        <br><hr><br>
-                        <div class="row">
-                            <div class="col"><p class="card-text"><b>Favorite Hotspots:</b>  </p> </div>
-                            <div class="col"><p class="card-text"> <b>Review counts: {{rev.count}}</b> </p></div>
+                        <br><hr>
+                    
+                    <!-- {% if user.is_superuser %}
+                    
+                        <a href="#" class="nav-link dropdown-toggle" id="frontPagesDropdown" aria-expanded="false" data-bs-toggle="dropdown">
+                            Admin
+                            <span class="fas fa-angle-down nav-link-arrow ms-1"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-megamenu px-0 py-2 p-lg-4" aria-labelledby="frontPagesDropdown">
+                            <div class="row">
+                                <div class="col">
+                                    <h6 class="d-block mb-3 text-primary">Add objects</h6>
+                                    <ul class="list-style-none mb-4">
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="/about.html">About</a>
+                                        </li>
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="/contact.html">Contact</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col">
+                                    <h6 class="d-block mb-3 text-primary">Update/Delete</h6>
+                                    <ul class="list-style-none mb-4">
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="/about.html">About</a>
+                                        </li>
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="/contact.html">Contact</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
                         </div>
-                        
+                    
+                        {% else %}
+                        {% endif %} -->
+
+                        {% if user.is_superuser %}
+                        <h5 class="card-title text-center"> Admin </h5>
+                        <br>
+
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="d-block mb-3 text-primary"> <b>New Adds</b></h6>
+                                    <ul class="list-style-none mb-4">
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="{% url 'add-provider' %}">Add Provider</a>
+                                        </li>
+
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="{% url 'add-borough' %}">Add Hotspot</a>
+                                        </li>
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="{% url 'add-neighborhood' %}">Add Neigborhood</a>
+                                        </li>
+
+                                    </ul>
+                            </div>
+                            <div class="col">
+                                <h6 class="d-block mb-3 text-primary"> <b>Update - Delete</b></h6>
+                                    <ul class="list-style-none mb-4">
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="{% url 'provider-list' %}">Provider List</a>
+                                        </li>
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="{% url 'hotspot-list' %}">Hotspot List</a>
+                                        </li>
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="{% url 'neighborhood-list' %}">Neighborhood List</a>
+                                        </li>
+                                       
+                                    
+                                    </ul>
+                                </ul>
+                            </div>
+                        </div>
+                        {% else %}
+                        <br>
+                        <div class="row">
+                            <div class="col"><p class="card-text"><b>Review Count:</b> {{rev.count}}</p></div>
+                            <div class="col"><p class="card-text"><b>Favorite Hotspots:</b> </p></div>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -85,13 +164,14 @@
                 {% else %}
                 <div class="card text-white bg-secondary bg-gradient mb-3">
                     <div class="card-body">
-                        <p class="card-text">No reviews for this hotspot yet. Hey! be the first to leave a review . What say you..</p>
+                        <p class="card-text text-center">You haven't posted any review yet.</p>
                     </div>
                 </div>
 
                 {% endif %}
             </div>
         </section>
+        
     
 
 

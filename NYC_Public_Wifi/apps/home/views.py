@@ -194,7 +194,7 @@ def pages(request):
         html_template = loader.get_template('home/page-500.html')
         return HttpResponse(html_template.render(context, request))
 
-
+@login_required(login_url="/login/")
 def add_borough(request):
 	submitted = False
 	if request.method == "POST":
@@ -225,6 +225,7 @@ def add_borough(request):
 
 
 #Add Neigborhood
+@login_required(login_url="/login/")
 def add_neighborhood(request):
 	submitted = False
 	if request.method == "POST":
@@ -258,6 +259,7 @@ def add_neighborhood(request):
 ###### ADD OBJECTS ######
 
 #Add Provider
+@login_required(login_url="/login/")
 def add_provider(request):
 	submitted = False
 	if request.method == "POST":
@@ -287,24 +289,26 @@ def add_provider(request):
 	return render(request, 'home/add-provider.html', {'form':form, 'submitted':submitted})
 
 #### LIST OBJECTS ####
-
+@login_required(login_url="/login/")
 def neighborhood_list(request):
     neighborhood_list = Neighborhood.objects.all().order_by('ntacode')
     return render(request, 'home/neighborhood-list.html',
                {'neighborhood_list':neighborhood_list})
     
+@login_required(login_url="/login/")
 def hotspot_list(request):
     hotspot_list = Hotspot_Location.objects.all().order_by('obj_id')
     return render(request, 'home/hotspot-list.html',
                {'hotspot_list':hotspot_list})
 
+@login_required(login_url="/login/")
 def provider_list(request):
     provider_list = Provider.objects.all().order_by('prov_id')
     return render(request, 'home/provider-list.html',
                {'provider_list':provider_list})
 
 ##### UPDATE OBJECTS #####
-
+@login_required(login_url="/login/")
 def update_neighborhood(request, ntacode):
 	event = Neighborhood.objects.get(ntacode=ntacode)
 	if request.user.is_superuser:
@@ -320,6 +324,7 @@ def update_neighborhood(request, ntacode):
 		{'event': event,
 		'form':form})
  
+@login_required(login_url="/login/")
 def update_hotspot(request, obj_id):
 	event = Hotspot_Location.objects.get(obj_id=obj_id)
 	if request.user.is_superuser:
@@ -336,6 +341,7 @@ def update_hotspot(request, obj_id):
 		'form':form})
  
  
+@login_required(login_url="/login/")
 def update_provider(request, prov_id):
 	event = Provider.objects.get(prov_id=prov_id)
 	if request.user.is_superuser:
@@ -354,6 +360,7 @@ def update_provider(request, prov_id):
 #### DELETE OBJECTS ####
 
 # Delete an Neighborhood
+@login_required(login_url="/login/")
 def delete_neighborhood(request, ntacode):
 	event = Neighborhood.objects.get(ntcaode=ntacode)
 	if request.user.is_superuser:
@@ -376,6 +383,7 @@ def delete_hotspot(request, obj_id):
 		return redirect('hotspot-list')		
 
 # Delete a Provider
+@login_required(login_url="/login/")
 def delete_provider(request, prov_id):
 	event = Provider.objects.get(prov_id=prov_id)
 	if request.user.is_superuser:
