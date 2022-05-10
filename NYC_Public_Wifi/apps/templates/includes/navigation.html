@@ -38,14 +38,49 @@
                                             </li>
                                         </ul>
                                     </div>
+                                    {% if user.is_superuser %}
                                     <div class="col-6 col-lg-4">
+
                                         <h6 class="d-block mb-3 text-primary">Activities</h6>
+
                                         <ul class="list-style-none mb-4">
+                                          
+                                       
                                             <li class="mb-2 megamenu-item">
                                                 <a class="megamenu-link" href="{% url 'search' %}">Search</a>
                                             </li>
+                                            <li class="mb-2 megamenu-item">
+                                                <a class="megamenu-link" href="{% url 'add-borough' %}">Add Hotspot</a>
+                                            </li>
+                                            <li class="mb-2 megamenu-item">
+                                                <a class="megamenu-link" href="{% url 'add-neighborhood' %}">Add Neigborhood</a>
+                                            </li>
+                                            <li class="mb-2 megamenu-item">
+                                                <a class="megamenu-link" href="{% url 'add-provider' %}">Add Provider</a>
+                                            </li>
+                                     
                                         </ul>
                                     </div>
+                                    {% endif %}
+
+                                    {% if user.is_superuser %}
+                                    <div class="col-6 col-lg-4">
+                                        <h6 class="d-block mb-3 text-primary">List</h6>
+                                        <ul class="list-style-none mb-4">
+                                          
+                                            <li class="mb-2 megamenu-item">
+                                                <a class="megamenu-link" href="{% url 'neighborhood-list' %}">Neighborhood List</a>
+                                            </li>
+                                            <li class="mb-2 megamenu-item">
+                                                <a class="megamenu-link" href="{% url 'hotspot-list' %}">Hotspot List</a>
+                                            </li>
+                                            <li class="mb-2 megamenu-item">
+                                                <a class="megamenu-link" href="{% url 'provider-list' %}">Provider List</a>
+                                            </li>
+                                     
+                                        </ul>
+                                    </div>
+                                    {% endif %}
                                     <div class="col-6 col-lg-4">
                                         <h6 class="d-block mb-3 text-primary">User</h6>
                                         <ul class="list-style-none mb-4">
