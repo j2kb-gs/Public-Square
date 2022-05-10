@@ -141,9 +141,18 @@ def best_rated_reviews(request):
     return render (request, 'home/best_rated_reviews.html', {'hotspot':hotspot})
 
 @login_required(login_url="/login/")
-def user_reviews(request):
-    owner = User.objects.get(user_pk = request.user.id)
-    rev = Review.objects.get(owner = owner, deleted = False)
+def user_reviews(request, pk):
+    owner = User.objects.filter(id = pk)
+
+    if not owner.exists():
+        raise Http404
+    else:
+        owner = owner.first()
+
+    rev = Review.objects.filter(owner = owner, deleted = False)
+
+   
+
     context = {
         'rev':rev
     }

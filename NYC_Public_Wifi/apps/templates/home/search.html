@@ -33,7 +33,7 @@
                         <div class="alert alert-success d-flex align-items-center" role="alert">
                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                             <div  class=" text-center">
-                               Results for search keyword " <i>{{ request.GET.q }}</i> "
+                               {{results.count}} Results for search keyword " <i>{{ request.GET.q }}</i> "
                             </div>
                         </div>
                             
@@ -59,16 +59,17 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    Location: {{result.obj_id.location}}
+                                    <b>Location:</b> {{result.obj_id.location}}
                                 </div>
                                 <div class="col">
-                                    Neighborhood: {{result.ntacode.nta}}
+                                    <b>Neighborhood:</b> {{result.ntacode.nta}}
                                 </div>
                                 <div class="col">
-                                    Postcode: {{result.ntacode.postcode}}
+                                    <b>Postcode:</b> {{result.ntacode.postcode}}
                                 </div>
                                 <div class="col">
-                                    Rating: 
+                                    <b>Rating:</b> {{result.obj_id.average_rating | floatformat}} 
+                                    <span class="fas fa-star"></span>  
                                 </div>
                             </div>
                         </div>

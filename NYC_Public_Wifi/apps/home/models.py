@@ -23,7 +23,10 @@ class Hotspot_Location(models.Model):
     def average_rating(self):
         all_ratings = map(lambda x: x.rate, self.review_set.all())
         ar = np.mean(list(all_ratings)) # np -> numpy
-        return ar
+        if (ar >=0 ):
+            return ar
+        else:
+            return 0
 
 
 #---------------------------#

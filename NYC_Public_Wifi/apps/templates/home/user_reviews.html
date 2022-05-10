@@ -1,0 +1,104 @@
+{% extends "layouts/base.html" %}
+{% block title %} Hotspot Profile {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <main class="bg-gray-200"> 
+        {% include 'includes/preloader.html' %}
+
+        <!-- Hero -->
+        <section class="section section-header pb-11 bg-primary text-white">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-xl-8 text-center">
+                        <a href="">
+                            <h1 class="display-2 mb-3">Hello {{user}}  </h1> </a>
+                        <p class="lead"> your personal stats are here.</p>        
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+            <!-- Section -->
+        <div class="section py-0">
+            <div class="container mt-n10">
+            
+                <div class="card text-dark bg-light mb-3 " >
+                    <div class="card-header">
+                        <h5 class="card-title text-center">
+                            Your Infos
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col"><p class="card-text "><b>Username:</b> {{user}}</p></div>
+                            <div class="col"><p class="card-text"><b>Date Joined:</b> {{user.date_joined}}</p></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col"><p class="card-text"><b>Email:</b> {{user.email}}</p></div>
+                            <div class="col"><p class="card-text"><b>Last Login:</b> {{user.last_login}}</p></div>
+                        </div>
+                        <br><hr><br>
+                        <div class="row">
+                            <div class="col"><p class="card-text"><b>Favorite Hotspots:</b>  </p> </div>
+                            <div class="col"><p class="card-text"> <b>Review counts: {{rev.count}}</b> </p></div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="section section-lg bg-gray-200 rounded pt-6">
+            <div class="container  bg-light  mb-3">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-xl-8 text-center"> 
+                        <h3 class="display-2 mb-3"> Your Reviews </h>    
+                    </div>
+                </div>
+                <br>
+                {% if rev %}
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+
+                    {% for rev in rev %}
+                    <div class="col">
+                        <div class="card text-white bg-secondary bg-gradient mb-3" >
+                            <div class="card-body">
+                                
+                                <h5 class="card-title">
+                                    <a href="{% url 'hotspot_profile' rev.obj_id.obj_id %}">
+                                        <b>Hotspot ID: {{rev.obj_id.obj_id}}</b>
+                                    </a> 
+                                    <span style="margin-left:6em"> {{rev.rate}} <span class="fas fa-star"></span> </span>
+
+                                </h5>
+                                <p class="card-text">{{rev.review}}</p>
+                                <p class="card-text"><small class="text-muted">Posted on {{rev.date_added}}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="card text-white bg-secondary bg-gradient mb-3">
+                    <div class="card-body">
+                        <p class="card-text">No reviews for this hotspot yet. Hey! be the first to leave a review . What say you..</p>
+                    </div>
+                </div>
+
+                {% endif %}
+            </div>
+        </section>
+    
+
+
+    </main>
+   
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+
