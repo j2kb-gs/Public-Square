@@ -8,7 +8,7 @@ throughout NYC
 
 ## Installation
 
-1. Open github and clone '336_Project_2' repository
+1. Open github and clone 'Public-Square' repository
 
 2. Open terminal/command prompt and go to the path of the repository
 
